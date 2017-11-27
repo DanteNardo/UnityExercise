@@ -27,6 +27,7 @@ public class HighStriker : GameBase
     Color RESPONSE_COLOR_MEDIUM = Color.yellow;
     Color RESPONSE_COLOR_LOW = Color.red;
     Color RESPONSE_COLOR_LOWEST = Color.black;
+    int markerDirection = 1;
 
     /// <summary>
     /// A reference to the UI canvas so we can instantiate the feedback text.
@@ -49,6 +50,10 @@ public class HighStriker : GameBase
 	/// The instructions text label.
 	/// </summary>
 	public Text instructionsText;
+    /// <summary>
+    /// The initial position of the marker in the world.
+    /// </summary>
+    private Vector3 originalMarkerPosition;
 
 
     /// <summary>
@@ -87,31 +92,61 @@ public class HighStriker : GameBase
 	/// </summary>
 	protected virtual IEnumerator MoveMarker(Trial t)
 	{
-		GameObject mark = marker;
-        mark.SetActive(false);
-		yield return new WaitForSeconds(t.delay);
+        //GameObject mark = marker;
+        //      mark.SetActive(false);
+        //yield return new WaitForSeconds(t.delay);
 
-		StartInput();
+        //StartInput();
+        //      mark.SetActive(true);
+        //      HighStrikerData data = sessionData.gameData as HighStrikerData;
+        //      Vector3 destination = originalMarkerPosition + (new Vector3(MAX_X_POS, 0, 0) * markerDirection);
+        //      float elapsed = 0.0f;
+        //      float distance = 0.0f;
+
+        //      while (listenForInput)
+        //      {
+        //          float frac = distance / MAX_X_POS;
+        //          mark.transform.position = Vector3.Lerp(mark.transform.position, destination, frac);
+        //          if (mark.transform.position == destination)
+        //          {
+        //              destination = -destination;
+        //              markerDirection = -markerDirection;
+        //          }
+        //          elapsed += Time.deltaTime;
+        //          distance = elapsed * 1;
+        //          yield return null;
+        //      }
+
+        //      mark.SetActive(false);
+        //yield break;
+        GameObject mark = marker;
+        mark.SetActive(false);
+        yield return new WaitForSeconds(t.delay);
+
+        StartInput();
         mark.SetActive(true);
-        HighStrikerData data = sessionData.gameData as HighStrikerData;
-        Vector3 destination = new Vector3(MAX_X_POS, 0, 0) * data.MarkerDirection;
-        float elapsed = 0.0f;
+
+        Vector3 destination = originalMarkerPosition + (new Vector3(MAX_X_POS, 0, 0) * markerDirection);
+        float frac = 1f;
 
         while (listenForInput)
         {
-            mark.transform.position = Vector3.Lerp(mark.transform.position, destination, elapsed);
-            if (mark.transform.position == destination)
+            mark.transform.position = new Vector3(
+                mark.transform.position.x + (frac * markerDirection), 
+                mark.transform.position.y, 
+                mark.transform.position.z);
+            if ((mark.transform.position.x >= destination.x && markerDirection == 1) ||
+                (mark.transform.position.x <= destination.x && markerDirection == -1))
             {
                 destination = -destination;
-                data.MarkerDirection = -data.MarkerDirection;
+                markerDirection = -markerDirection;
             }
-            elapsed += Time.deltaTime;
             yield return null;
         }
 
         mark.SetActive(false);
-		yield break;
-	}
+        yield break;
+    }
 
 
 	/// <summary>

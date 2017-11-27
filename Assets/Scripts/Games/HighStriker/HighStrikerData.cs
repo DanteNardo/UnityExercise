@@ -11,17 +11,12 @@ using System.Xml.Linq;
 public class HighStrikerData : GameData
 {
 	public const string HORIZONTAL_SCALE = "horizontalScale";
-    public const string MARKER_DIRECTION = "markerDirection";
     public const string MARKER_SPEED = "markerSpeed";
 
     /// <summary>
     /// The horizontal scale used for the marker's world space to score value.
     /// </summary>
     private float horizontalScale = 1.0f;
-    /// <summary>
-    /// The direction the marker is moving.
-    /// </summary>
-    private int markerDirection = 1;
     /// <summary>
     /// The speed of the marker moving across the score bar.
     /// </summary>
@@ -44,17 +39,6 @@ public class HighStrikerData : GameData
             return markerSpeed;
         }
     }
-    public int MarkerDirection
-    {
-        get
-        {
-            return markerDirection;
-        }
-        set
-        {
-            markerDirection = value == 0 || value == 1 ? value : 0;
-        }
-    }
 
     #endregion
 
@@ -69,7 +53,6 @@ public class HighStrikerData : GameData
 	{
 		base.ParseElement(elem);
 		XMLUtil.ParseAttribute(elem, HORIZONTAL_SCALE, ref horizontalScale);
-        XMLUtil.ParseAttribute(elem, MARKER_DIRECTION, ref markerDirection);
         XMLUtil.ParseAttribute(elem, MARKER_SPEED, ref markerSpeed);
     }
 
@@ -78,7 +61,6 @@ public class HighStrikerData : GameData
 	{
 		base.WriteOutputData(ref elem);
 		XMLUtil.CreateAttribute(HORIZONTAL_SCALE, horizontalScale.ToString(), ref elem);
-        XMLUtil.CreateAttribute(MARKER_DIRECTION, markerDirection.ToString(), ref elem);
         XMLUtil.CreateAttribute(MARKER_SPEED, markerSpeed.ToString(), ref elem);
     }
 }

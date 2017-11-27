@@ -58,6 +58,6 @@ public class HighStrikerTrial : Trial
 	public override void WriteOutputData(ref XElement elem)
 	{
 		base.WriteOutputData(ref elem);
-		XMLUtil.CreateAttribute(ReactData.ATTRIBUTE_DURATION, duration.ToString(), ref elem);
+		//XMLUtil.CreateAttribute(ReactData.ATTRIBUTE_DURATION, duration.ToString(), ref elem);
 	}
 }
