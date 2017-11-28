@@ -35,7 +35,10 @@ public static class SessionUtil
 			case GameType.React:
 				return XMLUtil.ELEM_REACT;
 
-			default:
+            case GameType.HighStriker:
+                return XMLUtil.ELEM_HIGH_STRIKER;
+
+            default:
 				return string.Empty;
 		}
 	}
