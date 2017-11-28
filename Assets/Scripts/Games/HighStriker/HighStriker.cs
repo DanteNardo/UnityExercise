@@ -126,20 +126,23 @@ public class HighStriker : GameBase
         StartInput();
         mark.SetActive(true);
 
+        HighStrikerData data = sessionData.gameData as HighStrikerData;
         Vector3 destination = originalMarkerPosition + (new Vector3(MAX_X_POS, 0, 0) * markerDirection);
-        float frac = 1f;
+        Vector3 newPosition = mark.transform.position;
 
         while (listenForInput)
         {
-            mark.transform.position = new Vector3(
-                mark.transform.position.x + (frac * markerDirection), 
-                mark.transform.position.y, 
-                mark.transform.position.z);
-            if ((mark.transform.position.x >= destination.x && markerDirection == 1) ||
-                (mark.transform.position.x <= destination.x && markerDirection == -1))
+            newPosition = new Vector3(newPosition.x + (data.MarkerSpeed * markerDirection), newPosition.y, newPosition.z);
+
+            // If we have reached our destination
+            if ((newPosition.x > destination.x && markerDirection == 1) || (newPosition.x < destination.x && markerDirection == -1))
             {
                 destination = -destination;
                 markerDirection = -markerDirection;
+            }
+            else
+            {
+                mark.transform.position = newPosition;
             }
             yield return null;
         }
