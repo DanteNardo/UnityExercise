@@ -1,32 +1,6 @@
 # Unity Exercise 
 
-Clone this Github project and expand it by adding a new game to it.
-
-The project is made in Unity 5.3
-
-It implements a very simple game called React, which briefly displays a stimulus (rectangle) and the player has to respond as quickly as possible.
-
-The codebase is structured so that more complex games can be built on top of it easily and its behavior can be controlled using an xml parameter file (which we call the session file).
-See the 'Overview' section below for more details on the structure of the project.
-
-
-Once you're familiar with the game and how the code is organized, you will be implementing one new game in this project.
-In this game you should be able to:
-
-- Specify in the session file whether the stimulus (rectangle) position per trial is random or predefined.
-  - The predefined position should be defined inside the session file on a per trial basis. 
-  - While the random position should be generated based off a defined range.
-- Specify in the session file whether the stimulus should sometimes appear red, in which case the player should NOT respond in order to get a correct response.
-- Save all the new game parameters (position, isRed, etc...) when creating a session log file at the end of a game.
-- Log important events such as the result of each Trial to a trace file by utilizing the GUILog functionality that the project has, instead of Unity's Debug.Log
-
-
-# Things to keep in mind
-
-- Treat this exercise as a real world scenario where we ask you to add a new game to our existing project.
-- The original React game should remain unchanged.
-- The new code should maintain the formatting conventions of the original code.
-
+The project is made in Unity 2017.1.1
 
 # Project Overview
 
@@ -44,7 +18,31 @@ In this game you should be able to:
 - **GameData** - A base class, used for storing game specific data.
 - **GameType** - Used to distinguish to which game a Session file belongs to.
 
+# HighStriker
+The implemented game is a virtual version of the high striker carnival game. At the carnival, one would use a hammer strike to launch a metal ball as high as possible. Since keyboard input is binary however, we instead base the difficulty of the game off of timing instead of pure strength. Players must time their key presses correctly to score the highest points. These scores will be saved so you can keep trying to reach a new high score!
 
-# Submission
+## Getting Started
 
-For your submission, extend this README documenting the rules of the new game, how the code works, how scoring works in the new game, and any other interesting or useful things you can think of for us to take into consideration. Then zip the git repository and send it to us.
+Clone this repository on your computer. Make sure Visual Studio 2017 is installed along with the .NET Framework 4.5 and Unity3d 2017.1.1
+
+### Prerequisites
+
+- Visual Studio 2017
+- .NET Framework 4.5.1
+- Unity3d 2017.1.1
+
+### Installing
+
+Install Unity3d 2017.1.1 first.
+Then install Visual Studio 2017 and when the installer pops up, choose '.NET desktop development' and 'Game development with Unity' under 'Mobile & Gaming'.
+
+## Built With
+
+* [Unity3d 2017.1.1](https://unity3d.com/) - The Game Engine
+* [Visual Studio 2017](https://www.visualstudio.com/downloads/) - The IDE
+* [.NET Framework 4.5.1](https://www.microsoft.com/en-us/download/details.aspx?id=40779) - Coding Framework
+* [Git](https://git-scm.com/) - Version Control
+
+## Authors
+
+* **Dante Nardo**
